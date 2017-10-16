@@ -22,9 +22,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     EffectsModule.forRoot([
       NumberEffects
     ]),
-    StoreRouterConnectingModule
+    // StoreRouterConnectingModule
   ],
-  providers: [],
+  providers: [
+    NumberEffects
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

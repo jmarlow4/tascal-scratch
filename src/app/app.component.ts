@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
   constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.store.dispatch({ type: 'INCREMENT_NUMBER', payload: 'derp'});
+    this.store.dispatch({ type: 'UPDATE_NUMBER', payload: {counter: 5}});
   }
 }

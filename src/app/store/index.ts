@@ -1,5 +1,8 @@
 import { RouterAction } from '@ngrx/router-store';
-import { Effect } from '@ngrx/effects';
+import { Actions, Effect } from '@ngrx/effects';
+import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import 'rxjs/add/operator/map';
 
 export interface AppState {
   counter: number;
@@ -16,17 +19,27 @@ export const initialState: State = {
 // actions
 export interface IncrementNumber {
   type: 'INCREMENT_NUMBER';
+}
+export interface UpdateNumber {
+  type: 'UPDATE_NUMBER';
   payload: { counter };
 }
-type Action = RouterAction<State> | IncrementNumber;
+export interface NumberResult {
+  type: 'NUMBER_RESULT';
+}
+type Action = RouterAction<State> | IncrementNumber | UpdateNumber | NumberResult;
 
 // reducer
 export function appReducer(state: AppState, action: Action): AppState {
   switch (action.type) {
     case 'INCREMENT_NUMBER': {
-      let incrementedCounter = state.counter;
-      incrementedCounter++;
-      return {...state, counter: incrementedCounter};
+      return {...state, counter: state.counter++};
+    }
+    case 'UPDATE_NUMBER': {
+      return {...state, counter: action.payload.counter};
+    }
+    case 'NUMBER_RESULT': {
+      return state;
     }
     default: {
       return state;
@@ -34,7 +47,13 @@ export function appReducer(state: AppState, action: Action): AppState {
   }
 }
 
-// effects @Injectable()
+// effects
+@Injectable()
 export class NumberEffects {
-  @Effect() numberIncremented = () => console.log('effect of incrementing the number!');
+  @Effect() numberIncremented = this.actions.ofType('UPDATE_NUMBER')
+    .map((a: UpdateNumber) => {
+      console.log('effect of update number!', a.payload.counter);
+      return { type: 'NUMBER_RESULT' };
+    });
+  constructor (private actions: Actions, private store: Store<State>) {}
 }
