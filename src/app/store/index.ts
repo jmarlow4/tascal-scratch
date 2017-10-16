@@ -1,5 +1,3 @@
-import { Actions, Effect } from '@ngrx/effects';
-import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/map';
 export * from './effects/number.effects';
