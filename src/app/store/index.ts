@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import 'rxjs/add/operator/map';
 export * from './effects/number.effects';
-export * from './reducers/number.reducers';
+export * from './reducers/number.reducer';
 
 export interface AppState {
   counter: number;

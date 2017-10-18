@@ -9,7 +9,7 @@ import { NumberEffects, initialState } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { numberReducer } from './store/reducers/number.reducers';
+import { numberReducer } from './store/reducers/number.reducer';
 
 const rootReducer = combineReducers({
   counter: numberReducer
