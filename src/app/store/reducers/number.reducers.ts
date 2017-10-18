@@ -1,15 +1,16 @@
 import {
   IncrementNumber, NumberResult, UpdateNumber
 } from '../actions/number.actions';
+import { State } from '../index';
 
 type Action = IncrementNumber | UpdateNumber | NumberResult;
-export function numberReducer(state: number = 0, action: Action): number {
+export function numberReducer(state: State, action: Action): State {
   switch (action.type) {
     case 'INCREMENT_NUMBER': {
-      return state++;
+      return {...state, counter: ++state.counter};
     }
     case 'UPDATE_NUMBER': {
-      return action.payload.counter;
+      return {...state, counter: action.payload.counter};
     }
     case 'NUMBER_RESULT': {
       return state;
