@@ -5,14 +5,14 @@ export const UPDATE_NUMBER = 'UPDATE_NUMBER';
 export const NUMBER_RESULT = 'NUMBER_RESULT';
 
 export class IncrementNumber implements Action {
-  readonly type: INCREMENT_NUMBER;
+  readonly type = INCREMENT_NUMBER;
 }
 export class UpdateNumber implements Action {
-  readonly type: UPDATE_NUMBER;
-  payload: { counter };
+  readonly type = UPDATE_NUMBER;
+  payload: number;
 }
 export class NumberResult implements Action {
-  readonly type: NUMBER_RESULT;
+  readonly type = NUMBER_RESULT;
 }
 
 export type NumberActions = IncrementNumber | UpdateNumber | NumberResult;

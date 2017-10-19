@@ -8,7 +8,7 @@ import { UpdateNumber } from '../actions/number.actions';
 export class NumberEffects {
   @Effect() numberIncremented = this.actions.ofType('UPDATE_NUMBER')
     .map((a: UpdateNumber) => {
-      console.log('effect of update number!', a.payload.counter);
+      console.log('effect of update number!', a.payload);
       return { type: 'NUMBER_RESULT' };
     });
   constructor (private actions: Actions, private store: Store<State>) {}

@@ -5,7 +5,10 @@ import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
 import { combineReducers, StoreModule } from '@ngrx/store';
-import { NumberEffects, initialState } from './store';
+import {
+  NumberEffects, initialState, reducerProvider,
+  reducerToken
+} from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -22,7 +25,7 @@ const rootReducer = combineReducers({
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    StoreModule.forRoot(<any>{app: rootReducer}, {initialState}),
+    StoreModule.forRoot(reducerToken),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([
       NumberEffects
@@ -30,7 +33,8 @@ const rootReducer = combineReducers({
     // StoreRouterConnectingModule
   ],
   providers: [
-    NumberEffects
+    NumberEffects,
+    reducerProvider
   ],
   bootstrap: [AppComponent]
 })
