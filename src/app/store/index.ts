@@ -1,27 +1,43 @@
 import {
-  ActionReducer, ActionReducerMap, combineReducers, compose,
+  ActionReducer, ActionReducerMap, combineReducers,
   MetaReducer
 } from '@ngrx/store';
 import 'rxjs/add/operator/map';
 import { environment } from '../../environments/environment';
-export * from './effects/number.effects';
-export * from './reducers/number.reducers';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { numberReducer } from './reducers/number.reducers';
+import { numberReducer } from './reducers/number.reducer';
+import 'rxjs/add/operator/map';
+import { InjectionToken } from '@angular/core';
+export * from './effects/number.effects';
 
 export interface AppState {
   counter: number;
 }
-export interface State { counter: number; }
+export interface State {
+  app: {
+    counter: number
+  };
+}
 
+export const reducers = combineReducers({
+  counter: numberReducer
+});
+
+export const reducerToken = new InjectionToken<ActionReducerMap<State>>('Reducers');
 // initial state
 export const initialState: State = {
-  counter: 0
+  app: { counter: 0 }
 };
+export function getReducers() {
+  return {
+    app: reducers,
+  };
+}
 
-export const allReducers: ActionReducerMap<any> = {
-  counter: numberReducer
-};
+export const reducerProvider = [
+  { provide: reducerToken, useFactory: getReducers }
+];
+
 // console.log all actions
 export function logger(actionReducer: ActionReducer<State>): ActionReducer<State> {
   return function(state: State, action: any): State {
