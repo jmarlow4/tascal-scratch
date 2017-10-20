@@ -9,7 +9,7 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'Tascal';
+  title = 'app';
   num: Observable<number>;
   constructor(private store: Store<IAppState>) {}
 

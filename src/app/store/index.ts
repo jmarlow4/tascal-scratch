@@ -22,7 +22,7 @@ export function logger
   (actionReducer: ActionReducer<IAppState>): ActionReducer<IAppState> {
   return function(state: IAppState, action: any): IAppState {
     console.log('state', state);
-    console.log('action', action);
+    console.log('action ' + action.type, action);
     return actionReducer(state, action);
   };
 }

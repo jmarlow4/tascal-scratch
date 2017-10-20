@@ -9,6 +9,9 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { NumberEffects } from './store/effects/number.effects';
+import { MatCardModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -22,6 +25,9 @@ import { NumberEffects } from './store/effects/number.effects';
     EffectsModule.forRoot([
       NumberEffects
     ]),
+    MatCardModule,
+    MatButtonModule,
+    FlexLayoutModule
     // StoreRouterConnectingModule
   ],
   providers: [
