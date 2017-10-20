@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { State } from '../index';
+import { IAppState } from '../index';
 import { Store } from '@ngrx/store';
 import { UpdateNumber } from '../actions/number.actions';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class NumberEffects {
@@ -11,5 +12,5 @@ export class NumberEffects {
       console.log('effect of update number!', a.payload);
       return { type: 'NUMBER_RESULT' };
     });
-  constructor (private actions: Actions, private store: Store<State>) {}
+  constructor (private actions: Actions, private store: Store<IAppState>) {}
 }

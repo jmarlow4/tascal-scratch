@@ -1,7 +1,7 @@
 import * as number from '../actions/number.actions';
 import { NumberActions } from '../actions/number.actions';
 
-export function numberReducer(state: number = 0, actions: NumberActions): number {
+export function counter(state: number, actions: NumberActions): number {
   switch (actions.type) {
     case 'INCREMENT_NUMBER': {
       return ++state;

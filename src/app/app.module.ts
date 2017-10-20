@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from 'angularfire2';
-import { metaReducers, reducerProvider, reducerToken, initialState } from './store';
+import { metaReducers, initialState, allReducers } from './store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { numberReducer } from './store/reducers/number.reducer';
 import { StoreModule } from '@ngrx/store';
 import { NumberEffects } from './store/effects/number.effects';
+import 'rxjs/operators/map';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { NumberEffects } from './store/effects/number.effects';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
-    StoreModule.forRoot(reducerToken, {initialState, metaReducers}),
+    StoreModule.forRoot(allReducers, {initialState, metaReducers}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     EffectsModule.forRoot([
       NumberEffects
@@ -26,8 +26,7 @@ import { NumberEffects } from './store/effects/number.effects';
     // StoreRouterConnectingModule
   ],
   providers: [
-    NumberEffects,
-    reducerProvider
+    NumberEffects
   ],
   bootstrap: [AppComponent]
 })

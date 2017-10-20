@@ -1,46 +1,26 @@
-import {
-  ActionReducer, ActionReducerMap, combineReducers,
-  MetaReducer
-} from '@ngrx/store';
-import 'rxjs/add/operator/map';
+import { ActionReducer, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../environments/environment';
 import { storeFreeze } from 'ngrx-store-freeze';
-import { numberReducer } from './reducers/number.reducer';
-import 'rxjs/add/operator/map';
-import { InjectionToken } from '@angular/core';
-export * from './effects/number.effects';
+import { counter } from './reducers/number.reducer';
+import 'rxjs/operators/map';
 
-export interface AppState {
+export interface IAppState {
   counter: number;
 }
-export interface State {
-  app: {
-    counter: number
-  };
-}
 
-export const reducers = combineReducers({
-  counter: numberReducer
-});
-
-export const reducerToken = new InjectionToken<ActionReducerMap<State>>('Reducers');
-// initial state
-export const initialState: State = {
-  app: { counter: 0 }
+export const allReducers: ActionReducerMap<IAppState> = {
+  counter
 };
-export function getReducers() {
-  return {
-    app: reducers,
-  };
-}
 
-export const reducerProvider = [
-  { provide: reducerToken, useFactory: getReducers }
-];
+// initial state
+export const initialState: IAppState = {
+  // app: { counter: 0 }
+  counter: 0
+};
 
-// console.log all actions
-export function logger(actionReducer: ActionReducer<State>): ActionReducer<State> {
-  return function(state: State, action: any): State {
+// console.log all actions if in dev mode
+export function logger(actionReducer: ActionReducer<IAppState>): ActionReducer<IAppState> {
+  return function(state: IAppState, action: any): IAppState {
     console.log('state', state);
     console.log('action', action);
     return actionReducer(state, action);

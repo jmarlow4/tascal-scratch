@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { State } from './store/index';
+import { IAppState } from './store';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -11,11 +11,11 @@ import { Observable } from 'rxjs/Observable';
 export class AppComponent implements OnInit {
   title = 'app';
   num: Observable<number>;
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
     this.store.dispatch({type: 'UPDATE_NUMBER', payload: 5});
-    this.num = this.store.select('app', 'counter');
+    this.num = this.store.select('counter');
   }
 
   increment(event) {
