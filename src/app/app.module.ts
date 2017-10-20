@@ -9,7 +9,6 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { NumberEffects } from './store/effects/number.effects';
-import 'rxjs/operators/map';
 
 @NgModule({
   declarations: [

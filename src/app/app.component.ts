@@ -9,12 +9,12 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'app';
+  title = 'Tascal';
   num: Observable<number>;
   constructor(private store: Store<IAppState>) {}
 
   ngOnInit() {
-    this.store.dispatch({type: 'UPDATE_NUMBER', payload: 5});
+    // this.store.dispatch({type: 'UPDATE_NUMBER', payload: 5});
     this.num = this.store.select('counter');
   }
 
