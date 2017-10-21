@@ -9,9 +9,13 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { StoreModule } from '@ngrx/store';
 import { NumberEffects } from './store/effects/number.effects';
-import { MatCardModule } from '@angular/material';
+import {
+  MatCardModule, MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     StoreModule.forRoot(allReducers, {initialState, metaReducers}),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
@@ -27,6 +32,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ]),
     MatCardModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatSidenavModule,
     FlexLayoutModule
     // StoreRouterConnectingModule
   ],
