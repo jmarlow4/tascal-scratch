@@ -16,6 +16,9 @@ import {
 import { MatButtonModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginFormComponent } from './modules/auth/components/login-form/login-form.component';
+import { SignupFormComponent } from './modules/auth/components/signup-form/signup-form.component';
+import { AuthModule } from './modules/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatToolbarModule,
     MatSidenavModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AuthModule
     // StoreRouterConnectingModule
   ],
   providers: [

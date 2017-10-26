@@ -20,9 +20,14 @@
           <mat-card-title>Card Header {{num | async}}</mat-card-title>
           <mat-card-subtitle>Card subtitle</mat-card-subtitle>
       
-          <mat-card-content><p class="mat-caption">Card Content</p></mat-card-content>
+          <mat-card-content><p class="mat-caption">
+            <tsc-login-form></tsc-login-form>
+          </p></mat-card-content>
           <mat-card-actions>
-            <button mat-raised-button color="primary" (click)="increment($event)">Click me!</button>
+            <button mat-raised-button color="primary"
+                    (click)="increment($event)">
+              Click me!
+            </button>
           </mat-card-actions>
         </mat-card>
       </div>
