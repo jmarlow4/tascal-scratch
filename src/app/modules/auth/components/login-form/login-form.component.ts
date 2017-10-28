@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { AngularFireAuth } from 'angularfire2/auth';
-import * as firebase from 'firebase';
+import { AuthService } from '../../services/auth.service';
+import { IntUser } from '../../interfaces/user';
 
 @Component({
   selector: 'tsc-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
 
   loginForm: FormGroup;
   working = false;
 
-  constructor(public afAuth: AngularFireAuth ) { }
+  constructor(
+    private _authService: AuthService
+  ) {}
 
-  ngOnInit() {
-    this.afAuth.auth
-    .signInWithPopup(new firebase.auth.GoogleAuthProvider());
-      // .createUserWithEmailAndPassword(
-      //   'jasonmarlow@gmail.com',
-      //   'password1234')
-      // .then( authResponse => console.log(authResponse));
+  loginHandler(user: IntUser) {
+    this._authService.login(user);
   }
 
 }
