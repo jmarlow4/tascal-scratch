@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IntUser } from '../interfaces/user';
-import { UserInfo } from 'firebase';
+import { User, UserInfo } from 'firebase';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AuthService {
    * @param {IntUser} user
    * @return {Promise<any>}
    */
-  login(user: IntUser): Promise<UserInfo> {
+  login(user: IntUser): Promise<any> {
     return this._afAuth.auth
       .signInWithEmailAndPassword(
         user.email,
@@ -21,7 +21,13 @@ export class AuthService {
       );
   }
 
-  register(user: IntUser) {}
+  register(user: IntUser) {
+    return this._afAuth.auth
+      .createUserWithEmailAndPassword(
+        user.email,
+        user.password
+      );
+  }
 
   logout() {}
 

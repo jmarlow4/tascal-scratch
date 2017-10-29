@@ -15,10 +15,12 @@ export class LoginFormComponent {
 
   constructor(
     private _authService: AuthService
-  ) {}
+  ) {
+    // this.loginHandler({email: 'dorp@horp.com', password: 'herpderp'});
+  }
 
   loginHandler(user: IntUser) {
-    this._authService.login(user);
+    this._authService.register(user);
   }
 
 }
